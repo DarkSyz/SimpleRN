@@ -1,0 +1,22 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": "plugin:react/recommended",
+  "plugins": [
+      "react",
+      "react-native"
+  ],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+        "experimentalObjectRestSpread": true,
+        "jsx": true
+    }
+  },
+  "parser": "babel-eslint",
+  "rules": {
+    "semi": [2, "always"]
+  }
+}
