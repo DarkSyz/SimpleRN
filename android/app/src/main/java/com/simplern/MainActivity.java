@@ -1,9 +1,11 @@
-package com.testreactnative;
+package com.simplern;
+
+import com.facebook.react.*;
 
 import javax.net.ssl.*;
-import java.security.*;
-import java.security.cert.*;
-import com.facebook.react.ReactActivity;
+import java.security.cert.X509Certificate;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends ReactActivity {
 
@@ -13,7 +15,7 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "testReactNative";
+        return "SimpleRN";
     }
 
     static {
@@ -54,5 +56,5 @@ public class MainActivity extends ReactActivity {
         }
 
         HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-    }    
+    }  
 }

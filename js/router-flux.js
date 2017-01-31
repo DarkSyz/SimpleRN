@@ -6,7 +6,7 @@ import WEBAPI from './webapi';
 import LoadingSpinner from './spinner';
 import Login from './login';
 import TabIcon from './tabicon';
-
+import {Message, CustomView} from './native';
 
 const getSceneStyle = (/* NavigationSceneRendererProps */ props, computedProps) => {
     const style = {
@@ -39,7 +39,11 @@ export class Home extends Component {
         console.log(this.props.username);
         return (
             <View style={Styles.topContainer}>
-                <Text>Welcome, {this.props.username}</Text>
+                <Text style={{marginTop: 16}}>Native Module Sample - replace string:</Text>
+                <Message text={'Goodbye, ' + this.props.username}/>
+                <Text style={{marginTop: 16}}>Native View Sample:</Text>
+                <CustomView style={{width:40, height: 40}}
+                    startColor={0xF0F0F0} endColor={0x0F0F0F}/>
             </View>
         );
     }
@@ -108,16 +112,20 @@ export class Favorites extends Component {
                 dataSource: ds.cloneWithRows(data)
             });
         })
+        .then(()=>Actions.pop())
         .catch((error)=>{
             var ds = new ListView.DataSource({rowHasChanged: (r1, r2)=>r1 !== r2});
             this.setState({
                 dataSource: ds.cloneWithRows([])
             });            
             console.log(error);
-            alert('Failed to load data');
-        })
-        .then(()=>Actions.pop());
-
+            Alert.alert('', 'Failed to load data', [
+                {
+                    text: 'OK',
+                    onPress: ()=>Actions.pop()
+                }
+            ]);
+        });
     }
 }
 
