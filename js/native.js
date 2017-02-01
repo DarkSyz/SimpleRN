@@ -26,6 +26,7 @@ export const CustomView = requireNativeComponent(
     {
         name: 'CustomView', // RN view name
         propTypes: {
+            text: React.PropTypes.string,
             startColor: React.PropTypes.number,
             endColor: React.PropTypes.number,
             ...View.propTypes,      // default props

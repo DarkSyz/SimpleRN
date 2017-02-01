@@ -42,8 +42,8 @@ export class Home extends Component {
                 <Text style={{marginTop: 16}}>Native Module Sample - replace string:</Text>
                 <Message text={'Goodbye, ' + this.props.username}/>
                 <Text style={{marginTop: 16}}>Native View Sample:</Text>
-                <CustomView style={{width:40, height: 40}}
-                    startColor={0xF0F0F0} endColor={0x0F0F0F}/>
+                <CustomView style={{flex:1}} text={'Linda'}
+                    startColor={0xFF0000FF} endColor={0x00FF00FF}/>
             </View>
         );
     }
