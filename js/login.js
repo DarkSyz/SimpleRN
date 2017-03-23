@@ -1,5 +1,5 @@
 import React, { Component } from 'react'; 
-import {StyleSheet, Platform, Image, Text, TextInput, View, TouchableHighlight, Alert} from 'react-native'; 
+import {NativeModules, StyleSheet, Platform, Image, Text, TextInput, View, TouchableHighlight, Alert} from 'react-native'; 
 import {Actions} from 'react-native-router-flux';
 
 const styles = StyleSheet.create({  
@@ -43,9 +43,13 @@ export default class Login extends Component {
         super(props);
 
         this.state = {
-            username: 'ben.chen@perkinelmer.com',
+            username: 'darksys@example.com',
             password: ''
         };
+    }
+
+    componentDidMount(){
+        NativeModules.FlurryModule.logEvent(this.constructor.name);
     }
     render(){
         return(
@@ -64,7 +68,12 @@ export default class Login extends Component {
                         password clearButtonMode={'always'}/>
                 </View>
                 <TouchableHighlight underlayColor={'darkblue'} style={styles.loginButton}
-                    onPress={()=>{Actions.tabbar({username:this.state.username}); Actions.home();}}>
+                    onPress={
+                        ()=>{
+                            NativeModules.FlurryModule.logEventWithParams(this.constructor.name, {username:this.state.username});
+                            Actions.tabbar(); Actions.home({username:this.state.username});
+                        }
+                    }>
                     <Text style={styles.loginButtonText}>Login</Text>   
                 </TouchableHighlight>
                 <View style={{flexDirection:'row'}}>

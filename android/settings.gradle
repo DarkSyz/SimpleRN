@@ -1,3 +1,5 @@
 rootProject.name = 'SimpleRN'
 
 include ':app'
+rootProject.name = 'SimpleRN'
+

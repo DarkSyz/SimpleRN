@@ -7,7 +7,25 @@ import java.security.cert.X509Certificate;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 
+import com.flurry.android.Constants;
+import com.flurry.android.FlurryAgent;
+
 public class MainActivity extends ReactActivity {
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FlurryAgent.onStartSession(this);
+        FlurryAgent.setUserId("test");
+        FlurryAgent.setAge(32);
+        FlurryAgent.setGender(Constants.MALE);
+        FlurryAgent.logEvent(this.getClass().getName());
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        FlurryAgent.onEndSession(this);
+    }
 
     /**
      * Returns the name of the main component registered from JavaScript.

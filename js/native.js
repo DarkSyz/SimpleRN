@@ -7,10 +7,14 @@ export class Message extends Component {
         this.state = {text: this.props.text};
     }
     componentDidMount() {
-        NativeModules.MyCustomModule.processString(
+        /*NativeModules.MyCustomModule.processString(
             this.state.text,
             (text) => {this.setState({ text })}
-        );
+        );*/
+        NativeModules.MyCustomModule.processStringWithPromise(this.state.text)
+            .then(
+                (text) => this.setState({ text })
+            );
     }
     render = () => {
         return (
